@@ -44,9 +44,9 @@ module.exports = async (req, res) => {
 
   const { RESEND_API_KEY: key, ADMIN_EMAIL: admin, FROM_EMAIL: fromEnv, SMTP_USER, SMTP_PASS, SITE_URL, TELEGRAM_BOT_TOKEN: tgToken, TELEGRAM_CHAT_ID: tgChat } = process.env;
   const smtpMode = !!(SMTP_USER && SMTP_PASS);
-  const from = fromEnv || (smtpMode ? `TGR Digital Agency <${SMTP_USER}>` : '');
-  if (!admin || !(smtpMode || (key && from))) {
-    console.error('Missing env: set ADMIN_EMAIL + (SMTP_USER & SMTP_PASS) or (RESEND_API_KEY & FROM_EMAIL) in Vercel.');
+  const from = fromEnv || (smtpMode ? `TGR Digital Agency <${SMTP_USER}>` : 'TGR Digital Agency <onboarding@resend.dev>');
+  if (!admin || !(smtpMode || key)) {
+    console.error('Missing env: set ADMIN_EMAIL + RESEND_API_KEY (FROM_EMAIL is optional) in Vercel.');
     return res.status(500).json({ ok: false, error: 'The form is not configured yet. Please WhatsApp us on +91 89418 01033.' });
   }
   const site = (SITE_URL || 'https://tgrdigitalagency.online').replace(/\/$/, '');
