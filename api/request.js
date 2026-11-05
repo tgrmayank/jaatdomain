@@ -7,8 +7,14 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 const clean = (v, max) => String(v ?? '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, max);
 const refId = () => 'TGR-' + Date.now().toString(36).toUpperCase().slice(-6) + Math.random().toString(36).toUpperCase().slice(2, 4);
 
+let smtp;
 async function sendMail(payload, key, idem) {
-  const r = await fetch('https://api.resend.com/emails', {
+  const { SMTP_USER, SMTP_PASS, SMTP_HOST } = process.env;
+  if (SMTP_USER && SMTP_PASS) { // Gmail / any SMTP (no domain verification needed)
+    smtp = smtp || require('nodemailer').createTransport({ host: SMTP_HOST || 'smtp.gmail.com', port: 465, secure: true, auth: { user: SMTP_USER, pass: SMTP_PASS } });
+    return smtp.sendMail({ from: payload.from, to: payload.to, replyTo: payload.reply_to, subject: payload.subject, html: payload.html, text: payload.text });
+  }
+  const r = await fetch('https://api.resend.com/emails', { // Resend (needs verified domain)
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', 'Idempotency-Key': idem },
     body: JSON.stringify(payload),
@@ -36,9 +42,11 @@ module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ ok: false, error: 'Method not allowed.' }); }
 
-  const { RESEND_API_KEY: key, ADMIN_EMAIL: admin, FROM_EMAIL: from, SITE_URL, TELEGRAM_BOT_TOKEN: tgToken, TELEGRAM_CHAT_ID: tgChat } = process.env;
-  if (!key || !admin || !from) {
-    console.error('Missing env: RESEND_API_KEY, ADMIN_EMAIL and FROM_EMAIL must be set in Vercel.');
+  const { RESEND_API_KEY: key, ADMIN_EMAIL: admin, FROM_EMAIL: fromEnv, SMTP_USER, SMTP_PASS, SITE_URL, TELEGRAM_BOT_TOKEN: tgToken, TELEGRAM_CHAT_ID: tgChat } = process.env;
+  const smtpMode = !!(SMTP_USER && SMTP_PASS);
+  const from = fromEnv || (smtpMode ? `TGR Digital Agency <${SMTP_USER}>` : '');
+  if (!admin || !(smtpMode || (key && from))) {
+    console.error('Missing env: set ADMIN_EMAIL + (SMTP_USER & SMTP_PASS) or (RESEND_API_KEY & FROM_EMAIL) in Vercel.');
     return res.status(500).json({ ok: false, error: 'The form is not configured yet. Please WhatsApp us on +91 89418 01033.' });
   }
   const site = (SITE_URL || 'https://tgrdigitalagency.online').replace(/\/$/, '');
