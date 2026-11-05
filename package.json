@@ -1,0 +1,6 @@
+{
+  "name": "tgr-digital-agency",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TGR Digital Agency website (static pages + Vercel serverless form API)"
+}
