@@ -18,9 +18,9 @@ var lb=document.querySelector('label[for="'+sel.id+'"]'),title=lb?lb.firstChild.
 var w=document.createElement("div");w.className="dd";sel.parentNode.insertBefore(w,sel);w.appendChild(sel);sel.classList.add("ddn");sel.tabIndex=-1;sel.setAttribute("aria-hidden","true");
 w.insertAdjacentHTML("beforeend",'<button type="button" class="ddb" aria-haspopup="listbox" aria-expanded="false" aria-label="'+title+'"><span></span><svg class="i" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><div class="bk"></div><div class="ddp" role="listbox"><div class="ddh"><i></i><b>'+title+'</b></div><ul></ul></div>');
 var b=w.querySelector(".ddb"),tx=b.firstChild,ul=w.querySelector("ul"),ac=-1;
-ul.innerHTML=[].map.call(sel.options,function(o,i){return '<li role="option" data-i="'+i+'"'+(o.value?"":' class="ph"')+'>'+esc(o.text)+'<svg class="i ck2" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></li>'}).join("");
+ul.innerHTML=[].map.call(sel.options,function(o,i){return '<li role="option" data-i="'+i+'"'+(o.value?"":' class="dph"')+'>'+esc(o.text)+'<svg class="i ck2" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></li>'}).join("");
 var lis=ul.children;
-function sync(){var o=sel.options[sel.selectedIndex];tx.textContent=o?o.text:"";b.classList.toggle("ph",!sel.value);[].forEach.call(lis,function(li,i){var on=i==sel.selectedIndex;li.classList.toggle("on",on);li.setAttribute("aria-selected",on)})}
+function sync(){var o=sel.options[sel.selectedIndex];tx.textContent=o?o.text:"";b.classList.toggle("dph",!sel.value);[].forEach.call(lis,function(li,i){var on=i==sel.selectedIndex;li.classList.toggle("on",on);li.setAttribute("aria-selected",on)})}
 sel._sync=sync;sync();
 function hi(i){ac=Math.max(0,Math.min(lis.length-1,i));[].forEach.call(lis,function(li,k){li.classList.toggle("ac",k==ac)});lis[ac].scrollIntoView({block:"nearest"})}
 function open(){if(w.classList.contains("open"))return;var r=b.getBoundingClientRect();w.classList.toggle("up",innerWidth>820&&innerHeight-r.bottom<300&&r.top>innerHeight-r.bottom);w.classList.add("open");b.setAttribute("aria-expanded","true");hi(sel.selectedIndex<0?0:sel.selectedIndex)}
