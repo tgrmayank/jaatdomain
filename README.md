@@ -46,3 +46,18 @@ Dhyan rahe: Google rank ki 100% guarantee koi nahi de sakta. Ye setup technical 
 - Contact details / map: `contact.html` me iframe `src` ko apne Google Maps "Embed a map" link se badal sakte ho. Exact location ke liye schema `geo` (30.3165, 78.0322 approx) har page me update karo.
 - Diwali offer khatam hone par `offer.html` aur `index.html` ke offer text badlo.
 - Search Console verification tag milne par har page ke `<head>` me daalo.
+
+---
+## v2 update (SEO + images + logo)
+- **Har page ka unique title, description aur 10 keywords** — poori list `SEO-KEYWORDS.md` me hai (Dehradun digital agency, digital marketing, app development, website development, SEO, contact, etc.).
+- **Har page par**: unique content (intro + FAQs), "Popular searches" block, FAQ + Breadcrumb + Service/ContactPage/AboutPage schema, aur Organization schema me square logo (`assets/img/logo-square.png`).
+- **Contact page**: "TGR Digital Agency contact details" table (phone, emails, location), FAQs, ContactPage + contactPoint schema, nayi contact image.
+- **Logo/favicon**: asli TGR logo se naya favicon set (`favicon.ico`, `favicon-48/96/144`, `icon-192/512`, `apple-touch-icon`). Purana generic "TGR" text icon hata diya.
+- **Images fix**: stretch/lambi image ka asli bug (HTML `height` attribute + CSS `width:100%`) CSS me fix. Phone par offer cards chhote kiye. Nayi `services-team` aur `contact-team` images (webp, phone ke liye -sm version).
+- `sitemap.xml` me image entries add, `site.webmanifest` update.
+
+### Deploy ke baad (logo Google me aane ke liye zaroori)
+1. Google Search Console me domain add karo → `https://tgrdigitalagency.online/sitemap.xml` submit karo.
+2. URL Inspection me `/`, `/contact`, `/services` ke liye **Request indexing** dabao (favicon/logo tabhi refresh hota hai).
+3. Google Business Profile banao/verify karo (Dehradun) — "tgr digital agency" search par logo, phone aur map isi se aata hai.
+4. Favicon/logo Google me aane me kuch din se kuch hafte lag sakte hain; rank ki guarantee koi nahi de sakta.
