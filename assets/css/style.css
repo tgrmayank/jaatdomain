@@ -151,7 +151,7 @@ footer li{list-style:none;padding:4px 0;font-size:14px}footer a:hover,footer but
 .cmp input,.cmp select,.cmp textarea{font-size:16px}
 .dd{position:relative}.ddn{position:absolute!important;opacity:0;pointer-events:none;width:1px!important;height:1px!important;padding:0!important}
 .ddb{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:12px;padding:13px 14px;font-size:16px;text-align:left;color:var(--ink);transition:box-shadow .2s}
-.ddb.ph span{color:#8591aa}.ddb .i{width:20px;height:20px;flex:none;color:var(--mut);transition:transform .25s}
+.ddb.dph span{color:#8591aa}.ddb .i{width:20px;height:20px;flex:none;color:var(--mut);transition:transform .25s}
 .dd.open .ddb,.ddb:focus-visible{outline:0;box-shadow:inset 0 0 0 2px var(--bl)}.dd.open .ddb .i{transform:rotate(180deg);color:var(--bl)}
 .dd.er .ddb{box-shadow:inset 0 0 0 2px var(--rd)}
 .bk{display:none;position:fixed;inset:0;z-index:150}.dd.open .bk{display:block}
@@ -159,7 +159,7 @@ footer li{list-style:none;padding:4px 0;font-size:14px}footer a:hover,footer but
 .dd.up .ddp{top:auto;bottom:calc(100% + 6px)}.dd.open .ddp{display:block}.ddh{display:none}
 @keyframes ddin{from{opacity:0;transform:translateY(-6px)}}
 .ddp ul{list-style:none}.ddp li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:10px;cursor:pointer;font-weight:600;font-size:15px;color:var(--ink)}
-.ddp li.ph{color:var(--mut);font-weight:500}.ddp li:hover,.ddp li.ac{background:var(--tint)}.ddp li.on{background:var(--bl2);color:var(--bl)}
+.ddp li.dph{color:var(--mut);font-weight:500}.ddp li:hover,.ddp li.ac{background:var(--tint)}.ddp li.on{background:var(--bl2);color:var(--bl)}
 .ddp .ck2{width:18px;height:18px;color:var(--bl);opacity:0;stroke-width:2.4}.ddp li.on .ck2{opacity:1}
 @media(max-width:820px){.bk{background:rgba(13,24,48,.5)}.dd.open .bk{animation:fd .2s}
 .ddp{position:fixed;left:0;right:0;top:auto!important;bottom:0;border-radius:24px 24px 0 0;padding:0 12px calc(16px + env(safe-area-inset-bottom,0px));max-height:70vh;animation:sheet .28s cubic-bezier(.2,.8,.2,1)}
@@ -241,3 +241,46 @@ main{display:block}#nav .btn.sm{white-space:nowrap}#nav nav{margin-left:auto}#na
 .dc a,.ct{color:#fff}.sec-form{padding-top:20px}.ph .rqg{margin-top:10px}.ph .cmp{background:var(--tint)}.ph .ok{padding-bottom:30px}
 footer li a{display:inline-block}.soc a{display:block}
 @media(max-width:960px){.dk .ch{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.dk .ch{grid-template-columns:1fr}}
+
+/* ===== v2: image fixes, page heroes, SEO sections ===== */
+/* Root cause of stretched/too-long images: width/height HTML attributes + CSS width:100% without height:auto. */
+img{max-width:100%;height:auto}
+#nav img{height:40px;width:auto}
+.hero-img img{height:auto}
+.oc img{width:auto;max-width:100%;height:auto;max-height:470px;margin-inline:auto;display:block;aspect-ratio:auto}
+#flag img,.pimg img{height:auto}
+.ph2{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
+.ph2 h1{max-width:none}
+.pimg img{width:100%;display:block;filter:drop-shadow(0 22px 28px rgba(10,30,70,.16))}
+.kw{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0 0 6px}
+.kw li{background:#fff;border-radius:99px;box-shadow:inset 0 0 0 1px #d6e0f2}
+.tint .kw li{background:#fff}
+.kw li a,.kw li span{display:block;padding:9px 16px;font-size:14px;font-weight:600;color:var(--mut);border-radius:99px;line-height:1.35}
+.kw li a:hover{color:var(--bl);background:var(--bl2)}
+.kwn{color:var(--mut);margin:-26px 0 22px;max-width:700px}
+.kwh{font-size:20px;margin:34px 0 14px}
+.nap{display:grid;grid-template-columns:repeat(2,1fr);gap:0 44px;max-width:980px}
+.nap>div{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:14px 0;box-shadow:0 1px 0 #e3e9f3}
+.nap dt{color:var(--mut);font-size:14px}.nap dd{font-weight:600;word-break:break-word}
+.fk{padding:18px 0 22px;font-size:13.5px;line-height:1.9;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);margin-top:6px}
+.fk b{color:#fff;margin-right:10px;font-weight:600}.fk a{display:inline-block;margin-right:14px;color:#9fb2d6}.fk a:hover{color:#fff}
+.dd.open .ddp{z-index:210}
+@media(max-width:820px){
+ .ph2{grid-template-columns:1fr;gap:26px}.nap{grid-template-columns:1fr}
+ .oc img{max-height:380px}
+ .kwn{margin-top:-30px}
+ .hero-img img{width:100%;margin:0}
+}
+@media(max-width:520px){.nap>div{grid-template-columns:1fr;gap:2px}.kw li a,.kw li span{padding:8px 13px;font-size:13.5px}}
+
+/* v2: compact offer cards on phones (poster first, shorter card) */
+@media(max-width:820px){
+ .oc{padding:22px 18px 24px;gap:14px}
+ .oc>img{order:-1;max-height:250px;width:auto}
+ .oc h3{font-size:clamp(24px,7vw,30px);margin-bottom:10px}
+ .oc p{font-size:15px;margin-bottom:14px}
+ .ol{grid-template-columns:1fr 1fr;gap:8px 10px;margin-bottom:18px}.ol li{font-size:13.5px;gap:8px}.ol li:before{width:18px;height:18px;background-size:11px}
+ .oc .cta{gap:8px}.oc .cta .btn{padding:11px 18px;font-size:15px}
+ .dark .ol{display:flex}
+ .stp li{padding:8px 0}.cl{gap:10px}.ct2{padding:12px 14px}
+}
