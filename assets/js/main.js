@@ -105,7 +105,7 @@ var COL=["#0a5fd8","#3b86f2","#6fb1ff","#ffffff","#c3ccdc","#f0b429","#d3202b","
 function R(a,b){return a+Math.random()*(b-a)}
 function size(){var d=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);mob=W<700}
 function mk(top){return{x:R(0,W),y:top?R(-H,0):R(-20,H),w:R(6,11),h:R(9,15),r:R(0,6.28),vr:R(-.04,.04),ph:R(0,6.28),vp:R(.03,.08),vy:R(.5,1.3),sw:R(.4,1.2),sp:R(.01,.03),t:R(0,6.28),c:COL[(Math.random()*COL.length)|0]}}
-function init(){size();P=[];S=[];var n=mob?16:34,s=mob?8:16,i;for(i=0;i<n;i++)P.push(mk(false));for(i=0;i<s;i++)S.push({x:R(0,W),y:R(0,H),s:R(5,11),t:R(0,6.28),v:R(.02,.05),c:Math.random()<.5?"#f0b429":"#6fb1ff"})}
+function init(){size();P=[];S=[];var n=mob?8:16,s=mob?4:8,i;for(i=0;i<n;i++)P.push(mk(false));for(i=0;i<s;i++)S.push({x:R(0,W),y:R(0,H),s:R(5,11),t:R(0,6.28),v:R(.02,.05),c:Math.random()<.5?"#f0b429":"#6fb1ff"})}
 function burst(){var cx=Math.random()<.5?R(.06,.24)*W:R(.76,.94)*W,cy=R(.14,.34)*H,n=mob?22:38,col=[COL[1],COL[2],COL[5],COL[6],"#00b3ff"],cc=col[(Math.random()*col.length)|0];
 for(var i=0;i<n;i++){var a=i/n*6.283+R(-.05,.05),v=R(1.6,3.6);F.push({x:cx,y:cy,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,d:R(.012,.02),c:i%3?cc:"#f0b429"})}}
 function star(px,py,r,a,col){x.save();x.globalAlpha=a;x.translate(px,py);x.fillStyle=col;x.beginPath();x.moveTo(0,-r);x.quadraticCurveTo(0,0,r,0);x.quadraticCurveTo(0,0,0,r);x.quadraticCurveTo(0,0,-r,0);x.quadraticCurveTo(0,0,0,-r);x.fill();x.restore()}
@@ -114,7 +114,7 @@ var i,p,k;
 for(i=0;i<S.length;i++){p=S[i];p.t+=p.v;k=(Math.sin(p.t*8)+1)/2;star(p.x,p.y,p.s*(.5+k*.6),.25+k*.6,p.c)}
 for(i=0;i<P.length;i++){p=P[i];p.y+=p.vy;p.t+=p.sp;p.x+=Math.sin(p.t)*p.sw;p.r+=p.vr;p.ph+=p.vp;
 if(p.y>H+20){P[i]=mk(true);P[i].y=-20;continue}
-k=Math.cos(p.ph);x.save();x.translate(p.x,p.y);x.rotate(p.r);x.scale(1,k);x.globalAlpha=.9;x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+k=Math.cos(p.ph);x.save();x.translate(p.x,p.y);x.rotate(p.r);x.scale(1,k);x.globalAlpha=.7;x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);
 x.fillStyle=k>0?"rgba(255,255,255,.35)":"rgba(10,24,48,.22)";x.fillRect(-p.w/2,-p.h/2,p.w,p.h/2);
 x.strokeStyle="rgba(10,24,48,.18)";x.lineWidth=.6;x.strokeRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()}
 nextFw-=dt;if(nextFw<=0){burst();nextFw=R(4200,7600)}
