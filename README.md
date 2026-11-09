@@ -44,7 +44,7 @@ Dhyan rahe: Google rank ki 100% guarantee koi nahi de sakta. Ye setup technical 
 
 ## Customize
 - Contact details / map: `contact.html` me iframe `src` ko apne Google Maps "Embed a map" link se badal sakte ho. Exact location ke liye schema `geo` (30.3165, 78.0322 approx) har page me update karo.
-- Diwali offer khatam hone par `offer.html` aur `index.html` ke offer text badlo.
+- New Year offer khatam hone par `offer.html` aur `index.html` ke offer text badlo.
 - Search Console verification tag milne par har page ke `<head>` me daalo.
 
 ---

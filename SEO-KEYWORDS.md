@@ -6,7 +6,7 @@ Use these when you create your Google Business Profile, Instagram bio and backli
 ## /services/website-development
 - **Title:** Website Development Company in Dehradun | TGR Digital Agency (60 chars)
 - **Description:** Website development company in Dehradun: fast, mobile-friendly business, e-commerce and custom websites with SEO built in. Free quote on call or WhatsApp. (154 chars)
-- **Keywords:** website development company in dehradun, web design company dehradun, website developer in dehradun, business website development dehradun, e-commerce website development dehradun, responsive website design dehradun, affordable website design dehradun, restaurant website dehradun, website designing services uttarakhand, free website offer dehradun
+- **Keywords:** website development company in dehradun, web design company dehradun, website developer in dehradun, business website development dehradun, e-commerce website development dehradun, responsive website design dehradun, affordable website design dehradun, restaurant website dehradun, website designing services uttarakhand, new year offer dehradun
 
 ## /services/mobile-app-development
 - **Title:** Mobile App Development Company in Dehradun | TGR Digital Agency (63 chars)
@@ -105,8 +105,8 @@ Use these when you create your Google Business Profile, Instagram bio and backli
 
 ## /
 - **Title:** TGR Digital Agency | Dehradun Website, App & Digital Marketing (62 chars)
-- **Description:** TGR Digital Agency, Dehradun: website development, app development, SEO and digital marketing from one team. Free website offer. Call +91 89418 01033. (150 chars)
-- **Keywords:** tgr digital agency, tgr digital agency dehradun, digital agency in dehradun, dehradun digital agency, dehradun digital marketing, digital marketing agency in dehradun, dehradun app development, app development company in dehradun, website development company in dehradun, free website offer dehradun
+- **Description:** TGR Digital Agency, Dehradun: website development, app development, SEO and digital marketing from one team. New Year offer: 10% off on all new services. Call +91 89418 01033. (150 chars)
+- **Keywords:** tgr digital agency, tgr digital agency dehradun, digital agency in dehradun, dehradun digital agency, dehradun digital marketing, digital marketing agency in dehradun, dehradun app development, app development company in dehradun, website development company in dehradun, new year offer dehradun
 
 ## /services
 - **Title:** Digital Agency Services in Dehradun | 20 Services | TGR (55 chars)
@@ -129,9 +129,9 @@ Use these when you create your Google Business Profile, Instagram bio and backli
 - **Keywords:** tgr digital agency portfolio, tgr digital agency work, websites built in dehradun, android apps developed in dehradun, ios apps developed in dehradun, landing page design dehradun, saas development india, web development portfolio dehradun, app development portfolio dehradun, digital agency projects uttarakhand
 
 ## /offer
-- **Title:** Free Website Offer in Dehradun | Up to 30% Off | TGR (52 chars)
-- **Description:** Diwali offer from TGR Digital Agency, Dehradun: free website and up to 30% off on all services. See how to claim it and send your request today. (144 chars)
-- **Keywords:** free website offer dehradun, free website design offer, diwali offer digital agency, website development discount dehradun, digital marketing offer dehradun, app development offer dehradun, tgr digital agency offer, up to 30 percent off website, affordable website dehradun, digital agency discount india
+- **Title:** New Year Offer in Dehradun | 10% Off on All New Services | TGR (52 chars)
+- **Description:** New Year offer from TGR Digital Agency, Dehradun: 10% off on all new services. See how to claim it and send your request today. (144 chars)
+- **Keywords:** new year offer dehradun, new year offer digital agency, website design offer, website development discount dehradun, digital marketing offer dehradun, app development offer dehradun, tgr digital agency offer, 10 percent off new services, affordable website dehradun, digital agency discount india
 
 ## /request
 - **Title:** Request a Free Quote | TGR Digital Agency, Dehradun (51 chars)
