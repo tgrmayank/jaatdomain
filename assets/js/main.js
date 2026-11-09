@@ -89,7 +89,48 @@ o.addEventListener("focusin",function(){setHold(true)});o.addEventListener("focu
 /* autoplay clock: pauses while hovered, dragged or off screen; the active dot fills as a progress bar */
 var vis=true;new IntersectionObserver(function(e){vis=e[0].isIntersecting},{threshold:.15}).observe(o);
 (function loop(t){var dt=Math.min(60,t-last);last=t;if(!hold&&!busy&&vis&&!document.hidden){T+=dt;var f=dots.querySelector(".on i");if(f)f.style.transform="scaleX("+Math.min(1,T/DUR)+")";if(T>=DUR)go("prev")}requestAnimationFrame(loop)})(0);
-var IT=["Free website","Up to 30% off on all services","Fast delivery","Professional support","Affordable pricing","Business growth","Happy Diwali from TGR"],h=IT.map(function(t){return "<span>"+t+"</span>"}).join("");$("#otr").innerHTML=h+h;
+var IT=["Happy New Year","10% off on all new services","Fast delivery","Professional support","Affordable pricing","Business growth","Happy New Year from TGR"],h=IT.map(function(t){return "<span>"+t+"</span>"}).join("");$("#otr").innerHTML=h+h;
 })();
 
 }
+
+/* ===== New Year 3D decoration (confetti, sparkles, fireworks, poster tilt) ===== */
+(function(){
+if(window.__nyfx)return;window.__nyfx=1;
+var rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(rm)return;
+var c=document.createElement("canvas");c.id="nyfx";c.setAttribute("aria-hidden","true");document.body.appendChild(c);
+var x=c.getContext("2d"),W=0,H=0,mob=false,P=[],S=[],F=[],last=0,nextFw=1200,raf=0;
+var COL=["#0a5fd8","#3b86f2","#6fb1ff","#ffffff","#c3ccdc","#f0b429","#d3202b","#0a47a8"];
+function R(a,b){return a+Math.random()*(b-a)}
+function size(){var d=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);mob=W<700}
+function mk(top){return{x:R(0,W),y:top?R(-H,0):R(-20,H),w:R(6,11),h:R(9,15),r:R(0,6.28),vr:R(-.04,.04),ph:R(0,6.28),vp:R(.03,.08),vy:R(.5,1.3),sw:R(.4,1.2),sp:R(.01,.03),t:R(0,6.28),c:COL[(Math.random()*COL.length)|0]}}
+function init(){size();P=[];S=[];var n=mob?16:34,s=mob?8:16,i;for(i=0;i<n;i++)P.push(mk(false));for(i=0;i<s;i++)S.push({x:R(0,W),y:R(0,H),s:R(5,11),t:R(0,6.28),v:R(.02,.05),c:Math.random()<.5?"#f0b429":"#6fb1ff"})}
+function burst(){var cx=Math.random()<.5?R(.06,.24)*W:R(.76,.94)*W,cy=R(.14,.34)*H,n=mob?22:38,col=[COL[1],COL[2],COL[5],COL[6],"#00b3ff"],cc=col[(Math.random()*col.length)|0];
+for(var i=0;i<n;i++){var a=i/n*6.283+R(-.05,.05),v=R(1.6,3.6);F.push({x:cx,y:cy,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,d:R(.012,.02),c:i%3?cc:"#f0b429"})}}
+function star(px,py,r,a,col){x.save();x.globalAlpha=a;x.translate(px,py);x.fillStyle=col;x.beginPath();x.moveTo(0,-r);x.quadraticCurveTo(0,0,r,0);x.quadraticCurveTo(0,0,0,r);x.quadraticCurveTo(0,0,-r,0);x.quadraticCurveTo(0,0,0,-r);x.fill();x.restore()}
+function frame(ts){raf=requestAnimationFrame(frame);var dt=ts-last;last=ts;if(dt>80)dt=16;x.clearRect(0,0,W,H);
+var i,p,k;
+for(i=0;i<S.length;i++){p=S[i];p.t+=p.v;k=(Math.sin(p.t*8)+1)/2;star(p.x,p.y,p.s*(.5+k*.6),.25+k*.6,p.c)}
+for(i=0;i<P.length;i++){p=P[i];p.y+=p.vy;p.t+=p.sp;p.x+=Math.sin(p.t)*p.sw;p.r+=p.vr;p.ph+=p.vp;
+if(p.y>H+20){P[i]=mk(true);P[i].y=-20;continue}
+k=Math.cos(p.ph);x.save();x.translate(p.x,p.y);x.rotate(p.r);x.scale(1,k);x.globalAlpha=.9;x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+x.fillStyle=k>0?"rgba(255,255,255,.35)":"rgba(10,24,48,.22)";x.fillRect(-p.w/2,-p.h/2,p.w,p.h/2);
+x.strokeStyle="rgba(10,24,48,.18)";x.lineWidth=.6;x.strokeRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()}
+nextFw-=dt;if(nextFw<=0){burst();nextFw=R(4200,7600)}
+for(i=F.length-1;i>=0;i--){p=F[i];p.vy+=.035;p.vx*=.985;p.vy*=.985;p.x+=p.vx;p.y+=p.vy;p.l-=p.d;if(p.l<=0){F.splice(i,1);continue}
+x.globalAlpha=p.l;x.strokeStyle=p.c;x.lineWidth=2;x.lineCap="round";x.beginPath();x.moveTo(p.x,p.y);x.lineTo(p.x-p.vx*3,p.y-p.vy*3);x.stroke();
+x.fillStyle="#fff";x.globalAlpha=p.l*.9;x.beginPath();x.arc(p.x,p.y,1.2,0,6.283);x.fill()}
+x.globalAlpha=1}
+function start(){if(!raf){last=performance.now();raf=requestAnimationFrame(frame)}}
+function stop(){cancelAnimationFrame(raf);raf=0}
+init();start();
+addEventListener("resize",function(){size();for(var i=0;i<P.length;i++){if(P[i].x>W)P[i].x=R(0,W)}});
+document.addEventListener("visibilitychange",function(){document.hidden?stop():start()});
+/* gentle 3D tilt on the New Year offer poster (mouse devices only) */
+if(window.matchMedia&&matchMedia("(hover:hover) and (pointer:fine)").matches){
+var cards=document.querySelectorAll(".oc.fest");
+Array.prototype.forEach.call(cards,function(el){var im=el.querySelector("img");if(!im)return;
+el.addEventListener("mousemove",function(e){var b=el.getBoundingClientRect(),dx=(e.clientX-b.left)/b.width-.5,dy=(e.clientY-b.top)/b.height-.5;im.style.transform="perspective(900px) rotateY("+(dx*14).toFixed(2)+"deg) rotateX("+(-dy*10).toFixed(2)+"deg) scale(1.02)"});
+el.addEventListener("mouseleave",function(){im.style.transform=""})})}
+})();
